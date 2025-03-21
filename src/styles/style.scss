@@ -7,6 +7,10 @@
   --crimson-text: "Crimson Text";
   // Colors
   --color-primary: 41, 70%, 55%;
+  --color-secondary: 220, 43%, 3%;
+  --text-color: 220, 9%, 94%;
+  // Spacing
+  --padding-inline: 32px;
 }
 
 html, body, #app {
@@ -14,9 +18,8 @@ html, body, #app {
 }
 
 body {
-  background-color: #04060a;
-  background-color: #04060a;
-  color: #edeef0;
+  background-color: hsl(var(--color-secondary));
+  color: hsl(var(--text-color));
 
   font-family: "Crimson Text", sans-serif;
 }
