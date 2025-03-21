@@ -1,0 +1,22 @@
+@use "./reset.scss";
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+:root {
+  // Font
+  --harry-p: "Harry P";
+  --crimson-text: "Crimson Text";
+  // Colors
+  --color-primary: 41, 70%, 55%;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+  background-color: #04060a;
+  background-color: #04060a;
+  color: #edeef0;
+
+  font-family: "Crimson Text", sans-serif;
+}
