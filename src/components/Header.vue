@@ -1,10 +1,10 @@
 <template>
     <div class="header__wrapper">
         <header>
-            <RouterLink class="home-link" to="/">Wizward World</RouterLink>
-            
-            <nav v-if="authStore.isAuthenticated">
-                <RouterLink to="/houses">houses</RouterLink>
+            <router-link class="home-link" to="/">Wizward World</router-link>
+
+            <nav v-if="authStore.isAuthenticated && route.path !== '/'">
+                <router-link to="/houses">houses</router-link>
             </nav>
         </header>
     </div>
@@ -12,8 +12,9 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '@/store/auth';
-import { RouterLink } from 'vue-router';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 const authStore = useAuthStore();
 </script>
 

@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { Toast } from 'primevue';
-import Header from '@/components/Header/Header.vue';
+import Header from '@/components/Header.vue';
 </script>
 
 <style lang="scss" scoped>
