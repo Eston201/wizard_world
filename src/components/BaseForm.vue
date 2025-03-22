@@ -5,9 +5,7 @@
         </div>
 
         <div class="title__wrapper">
-            <h2>
-                <slot name="title">Title</slot>
-            </h2>
+            <slot name="title">Title</slot>
         </div>
 
        <slot name="form">

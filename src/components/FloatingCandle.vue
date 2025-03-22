@@ -6,8 +6,7 @@
             '--candle-top': y,
             '--float-delay': `${floatDelay}s`
         }"
-    >   
-        <!-- Image from https://www.pexels.com/photo/wax-candle-burning-in-darkness-19731256/ by thiago japyassu -->
+    >
         <img 
             src="/images/candle.png" 
             alt="candle burning"

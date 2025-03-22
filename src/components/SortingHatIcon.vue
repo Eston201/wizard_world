@@ -1,9 +1,9 @@
 <template>
-    <div class="icon__container" :style="{
+    <div class="sorting-hat__container" :style="{
         '--dimensions': `${size}px`
     }">
         <svg width="145px" height="145px" viewBox="-20 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_bgCarrier" :stroke-width="strokeWidth"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#f8fff7"
                 :stroke-width="strokeWidth">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -33,7 +33,7 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
-.icon__container {
+.sorting-hat__container {
     width: var(--dimensions);
     height: var(--dimensions);
 

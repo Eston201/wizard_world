@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import LoginForm from '@/components/Authentication/LoginForm.vue';
+import LoginForm from '@/components/LoginForm.vue';
 import FloatingCandle from '@/components/FloatingCandle.vue';
 import { useAuthStore } from '@/store/auth';
 import { useRouter } from 'vue-router';

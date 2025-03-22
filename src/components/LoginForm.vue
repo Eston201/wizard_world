@@ -72,10 +72,10 @@
 import { reactive } from 'vue';
 import { InputText, Message, Button, FloatLabel, Password } from 'primevue';
 import { Form } from '@primevue/forms';
-import BaseForm from '../Base/BaseForm.vue';
-import SortingHatIcon from '../SortingHatIcon.vue';
-import DecorativeTitle from '../DecorativeTitle.vue';
-import Ripple from '../Ripple.vue';
+import BaseForm from './BaseForm.vue';
+import SortingHatIcon from './SortingHatIcon.vue';
+import DecorativeTitle from './DecorativeTitle.vue';
+import Ripple from './Ripple.vue';
 import { motion } from 'motion-v';
 
 // Super charged Motion Components
@@ -113,7 +113,7 @@ const resolver = ({ values }: {values: any}) => {
 
 const onFormSubmit = ({ valid }: {valid: boolean}) => {
     if (!valid) return;
-    props.onSubmitFn(formValues.username, formValues.username);
+    props.onSubmitFn(formValues.username, formValues.password);
 };
 </script>
 
