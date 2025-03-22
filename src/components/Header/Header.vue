@@ -21,10 +21,11 @@ const authStore = useAuthStore();
 .header__wrapper {
     position: sticky;
     top: 0;
+    z-index: 1;
 
     min-height: 65px;
     margin-top: 1.5rem;
-    padding-inline: var(--padding-inline);
+    padding-inline: var(--viewport-padding);
 }
 
 header {

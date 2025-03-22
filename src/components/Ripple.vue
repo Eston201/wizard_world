@@ -3,7 +3,7 @@
         <div 
             class="ripple"
             v-for="x of amount" :key="x + 'ripple'"
-            :style="{'--delay': `${x * 0.5}s`}"
+            :style="{'--delay': `${x}s`}"
         >
         </div>
         <slot></slot>
