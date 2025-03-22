@@ -2,27 +2,20 @@
     <div class="decorative-title__wrapper">
         <div class="deco">
             <div class="line"></div>
-            <div class="deco-box__wrapper">
-                <div class="box"></div>
-                <div class="box middle"></div>
-                <div class="box"></div>
-            </div>
+            <DecorativeBoxChain/>
         </div>
 
         <slot></slot>
 
         <div class="deco">
             <div class="line"></div>
-            <div class="deco-box__wrapper">
-                <div class="box"></div>
-                <div class="box middle"></div>
-                <div class="box"></div>
-            </div>
+            <DecorativeBoxChain/>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import DecorativeBoxChain from './DecorativeBoxChain.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -50,22 +43,5 @@
     height: 1px;
     background-color: hsl(var(--color-primary));
     border-radius: 3px;
-}
-
-.deco-box__wrapper {
-    display: flex;
-
-    .box {
-        --dimensions: 10px;
-        width: var(--dimensions);
-        height: var(--dimensions);
-        transform: rotate(45deg);
-        border: 1px solid currentColor;
-    }
-
-    .box.middle {
-        margin-inline: -2px;
-        border-color: hsl(var(--color-primary));
-    }
 }
 </style>

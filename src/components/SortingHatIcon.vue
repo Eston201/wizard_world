@@ -1,7 +1,9 @@
 <template>
-    <div class="sorting-hat__container" :style="{
-        '--dimensions': `${size}px`
-    }">
+    <div class="sorting-hat__container" 
+        :style="{
+            '--dimensions': `${size}px`
+        }"
+    >
         <svg width="145px" height="145px" viewBox="-20 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" :stroke-width="strokeWidth"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#f8fff7"
