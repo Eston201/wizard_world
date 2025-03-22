@@ -8,6 +8,8 @@ import {
 const Home = () => import('@/views/Home/Home.vue');
 const Auth = () => import('@/views/Authentication/Authentication.vue');
 const Houses = () => import('@/views/Houses/Houses.vue');
+const Spells = () => import('@/views/Spells/Spells.vue');
+const Elixirs = () => import('@/views/Elixirs/Elixirs.vue');
 
 const router =  createRouter({
     history: createWebHistory(),
@@ -32,6 +34,22 @@ const router =  createRouter({
             path: '/houses',
             name: 'houses',
             component: Houses,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/spells',
+            name: 'spells',
+            component: Spells,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/elixirs',
+            name: 'elixirs',
+            component: Elixirs,
             meta: {
                 requiresAuth: true
             }

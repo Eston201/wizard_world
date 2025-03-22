@@ -1,14 +1,15 @@
 <template>
   <div class="app-content__wrapper">
     <Header/>
-    <div class="router__wrapper">
 
+    <div class="router__wrapper">
       <router-view v-slot="{ Component }">
         <transition name="fadeBlur" mode="out-in">
           <component :is="Component" />
         </transition>
       </router-view>
     </div>
+
     <Toast class="toast" position="top-right"/>
   </div>
 </template>
@@ -26,8 +27,7 @@ import Header from '@/components/Header/Header.vue';
 
   .router__wrapper {
     flex: 1;
-
-    padding-inline: var(--padding-inline);
+    padding-inline: var(--viewport-padding);
   }
 }
 
