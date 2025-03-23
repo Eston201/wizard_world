@@ -5,6 +5,7 @@ import { ROUTE_NAMES } from './types';
 const Home = () => import('@/views/Home/Home.vue');
 const Auth = () => import('@/views/Authentication/Authentication.vue');
 const Houses = () => import('@/views/Houses/Houses.vue');
+const HouseDetail = () => import('@/views/Houses/HouseDetail.vue');
 const Spells = () => import('@/views/Spells/Spells.vue');
 const Elixirs = () => import('@/views/Elixirs/Elixirs.vue');
 
@@ -31,6 +32,14 @@ export const routes: RouteRecordRaw[] = [
         component: Houses,
         meta: {
             requiresAuth: true
+        }
+    },
+    {
+        path: '/houses/:id',
+        name: "",
+        component: HouseDetail,
+        meta: {
+            requiresAuth: true 
         }
     },
     {

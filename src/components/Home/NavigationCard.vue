@@ -1,5 +1,6 @@
 <template>
     <motion.article
+        tabindex="-1"
         class="navigation-card"
         :style="{backgroundImage: `url(${backgroundImgPath})`}"
         :whileHover="{ y: -12, backgroundPosition: '50% 50%',  rotate: -3, scale: 0.95 }"

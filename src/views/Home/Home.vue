@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import NavigationCard from '@/components/NavigationCard.vue';
+import NavigationCard from '@/components/Home/NavigationCard.vue';
 
 const navigationCards = [
     {

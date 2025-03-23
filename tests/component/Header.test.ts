@@ -6,6 +6,10 @@ import { routes } from '../../src/router/routes';
 import { useAuthStore } from '../../src/store/auth';
 import { ROUTE_NAMES } from '../../src/router/types';
 import Header from '../../src/components/Header.vue';
+import PrimeVue from 'primevue/config';
+import MobileNavigation from '../../src/components/MobileNavigation.vue';
+import MobileHamburger from '../../src/components/MobileHamburger.vue';
+import Navigation from '../../src/components/Navigation.vue';
 
 describe('Header', () => {
     let router: Router;
@@ -20,7 +24,7 @@ describe('Header', () => {
     
         wrapper = mount(Header, {
             global: {
-                plugins: [router, createTestingPinia()],
+                plugins: [router, createTestingPinia(), PrimeVue],
             }
         });
         authStore = useAuthStore();
@@ -47,6 +51,7 @@ describe('Header', () => {
             await router.push({name: ROUTE_NAMES.HOUSES});
             await router.isReady();
             expect(wrapper.find('nav').exists()).toBe(true);
+            expect(wrapper.findAll('.nav-link').length).toBe(3) // houses, spells, elixirs
         });
     
         it('routes to home via site anchor', async () => {
@@ -54,6 +59,35 @@ describe('Header', () => {
             await flushPromises();
             expect(router.currentRoute.value.name).toBe(ROUTE_NAMES.HOME);
             expect(wrapper.find('nav').exists()).toBe(false);
+        });
+    });
+
+    describe('Mobile Navigation', () => {
+        it('can open the mobile nav', async () => {
+            await wrapper.find('.mobile-menu__wrapper').trigger('click');
+            const mobileNav = wrapper.getComponent(MobileNavigation);
+            expect(mobileNav.vm.$props.isVisible).toBe(true);
+            const navigations = wrapper.getComponent(Navigation);
+            expect(navigations.findAll('a').length).toBe(3);
+        });
+
+        it('can change route and auto close mobile nav', async () => {
+            const navigations = wrapper.getComponent(Navigation);
+            await navigations.find('a[href="/houses"]').trigger('click');
+            await flushPromises();
+            expect(router.currentRoute.value.name).toBe(ROUTE_NAMES.HOUSES);
+            const mobileNav = wrapper.getComponent(MobileNavigation);
+            expect(mobileNav.vm.$props.isVisible).toBe(false); // Should auto close on nav click
+        });
+
+        it('can close the mobile nav on close btn click', async () => {
+            // First open it
+            await wrapper.find('.mobile-menu__wrapper').trigger('click');
+            const mobileNav = wrapper.getComponent(MobileNavigation);
+            expect(mobileNav.vm.$props.isVisible).toBe(true);
+            // Then close it
+            await wrapper.getComponent(MobileHamburger).trigger('click');
+            expect(mobileNav.vm.$props.isVisible).toBe(false);
         });
     });
 });

@@ -72,10 +72,10 @@
 import { reactive } from 'vue';
 import { InputText, Message, Button, FloatLabel, Password } from 'primevue';
 import { Form } from '@primevue/forms';
-import BaseForm from './BaseForm.vue';
-import SortingHatIcon from './SortingHatIcon.vue';
-import DecorativeTitle from './DecorativeTitle.vue';
-import Ripple from './Ripple.vue';
+import BaseForm from '@/components/BaseForm.vue';
+import SortingHatIcon from '@/components/Icons/SortingHatIcon.vue';
+import DecorativeTitle from '@/components/Decorative/DecorativeTitle.vue';
+import Ripple from '@/components/Decorative/Ripple.vue';
 import { motion } from 'motion-v';
 
 // Super charged Motion Components
