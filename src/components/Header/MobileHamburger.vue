@@ -20,8 +20,8 @@
 
 <script setup lang="ts">
 import { Button } from 'primevue';
-import WizardBroomIcon from './WizardBroomIcon.vue';
-import VisuallyHidden from './VisuallyHidden.vue';
+import WizardBroomIcon from '@/components/Icons/WizardBroomIcon.vue';
+import VisuallyHidden from '@/components/VisuallyHidden.vue';
 
 defineProps({
     isOpened: {

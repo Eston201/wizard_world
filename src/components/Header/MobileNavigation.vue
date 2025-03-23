@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { Drawer } from 'primevue';
-import VisuallyHidden from './VisuallyHidden.vue';
+import VisuallyHidden from '../VisuallyHidden.vue';
 import MobileHamburger from './MobileHamburger.vue';
 import Navigation from './Navigation.vue';
 
