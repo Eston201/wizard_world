@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { VueQueryPlugin } from '@tanstack/vue-query';
+import { VueQueryPlugin, type VueQueryPluginOptions } from '@tanstack/vue-query';
 import { definePreset } from '@primeuix/themes';
 import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config';
@@ -7,9 +7,28 @@ import ToastService from 'primevue/toastservice'
 import Aura from '@primeuix/themes/aura';
 import router from './router';
 import App from './App.vue';
+import ApiError from './utils/ApiError';
 
 import './styles/style.scss';
 
+// Tanstack Global Config
+const vueQueryPluginOptions: VueQueryPluginOptions = {
+    queryClientConfig: {
+        defaultOptions: {
+            queries: {
+                retry: (failureCount, error) => {
+                    // If an api error is thrown, do not retry the query
+                    if (error instanceof ApiError) {
+                        return false;
+                    }
+                    return failureCount < 3;
+                }
+            }
+        }
+    }
+}
+
+// PrimeVue Preset
 const MyPreset = definePreset(Aura, {
     semantic: {
         primary: {
@@ -31,7 +50,7 @@ const MyPreset = definePreset(Aura, {
 const pinia = createPinia();
 const app = createApp(App);
 app.use(pinia);
-app.use(VueQueryPlugin);
+app.use(VueQueryPlugin, vueQueryPluginOptions);
 app.use(PrimeVue, {
     theme: {
         preset: MyPreset,
