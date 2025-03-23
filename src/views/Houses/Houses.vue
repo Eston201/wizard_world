@@ -12,7 +12,7 @@
             :responsive-options="responsiveOptions"
         >
             <template #item="slotProps">
-                <article class="house-card">
+                <article class="house-card" @click="() => handleHouseClick(slotProps.data)">
                     <div class="house-img__wrapper">
                         <img :src="`/images/houses/${slotProps.data.name}.png`" :alt="slotProps.data.name + 'logo'" />
                     </div>
@@ -25,28 +25,14 @@
                                     id: slotProps.data.id
                                 }
                             }"
+                            @click="() => houseStore.setSelectedHouse(slotProps.data)"
                         >
                             {{ slotProps.data.name }}
                         </router-link>
-                        <!-- <button @click="() => handleHouseClick(slotProps.data)">
-                            {{  slotProps.data.name }}
-                        </button> -->
                     </div>
                 </article>
             </template>
         </Carousel>
-
-        <!-- <article 
-            v-for="house of data" :style="{background: 'blue', margin: '10px'}"
-            :key="house.id"
-            @click="() => handleHouseClick(house)"
-        >
-            {{ house.name }}
-
-            <div class="img__wrapper">
-                <img :src="`/images/houses/${house.name}1.png`" alt="">
-            </div>
-        </article> -->
 
         <router-view></router-view>
     </main>
@@ -90,12 +76,11 @@ const responsiveOptions = ref([
 ]);
 
 const {data, isPending, isError, error} = useHousesQuery();
-
+// Set selected house when data is being refetched
 watch(isPending, (nextValue) => {
     // Still loading data
     if (nextValue) return;
-
-    // data possibly fetched
+    // data possibly fetched, check for errors
     if (isError.value) {
         toast.add({ 
             severity: 'error', 
@@ -105,8 +90,7 @@ watch(isPending, (nextValue) => {
         });
         return;
     }
-
-    // We have data so check if we need to set house store 
+    // We have data so check if we need to set the house store 
     // If there is a id on the route
     const houseId = router.currentRoute.value.params.id;
     if (!houseId) return;
@@ -114,7 +98,6 @@ watch(isPending, (nextValue) => {
     if (!house) return;
     houseStore.setSelectedHouse(house);
 });
-
 
 function handleHouseClick(house: IHouse) {
     houseStore.setSelectedHouse(house);
@@ -128,15 +111,17 @@ function handleHouseClick(house: IHouse) {
 <style lang="scss" scoped>
 .house-card {
     height: 100%;
-    width: 125px;
+    width: 100%;
     
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    border-radius: 6px;
+    cursor: pointer;
 
     .house-img__wrapper {
         flex: 1;
+        max-width: 125px;
 
         img {
             height: 100%;
@@ -150,7 +135,7 @@ function handleHouseClick(house: IHouse) {
         
         a {
             color: hsl(var(--text-color));
-            font-family: var(--harry-p);
+            font-size: 1.25rem;
             text-decoration: none;
         }
     }

@@ -38,7 +38,6 @@ export const routes: RouteRecordRaw[] = [
                 path: '/houses/:id',
                 name: ROUTE_NAMES.HOUSE_DETAIL,
                 component: HouseDetail,
-                props: true,
                 meta: {
                     requiresAuth: false 
                 }
