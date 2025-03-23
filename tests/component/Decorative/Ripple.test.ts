@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import Ripple from '../../src/components/Ripple.vue';
+import Ripple from '../../../src/components/Decorative/Ripple.vue';
 
 describe('Ripple', () => {
     it('renders correctly with default props', () => {

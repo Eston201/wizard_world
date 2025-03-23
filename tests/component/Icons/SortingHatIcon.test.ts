@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import SortingHatIcon from '../../src/components/SortingHatIcon.vue';
+import SortingHatIcon from '../../../src/components/Icons/SortingHatIcon.vue';
 
 describe('SortingHatIcon', () => {
     it('it renders defaults correctly', () => {

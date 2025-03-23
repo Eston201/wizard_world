@@ -2,14 +2,14 @@ import { flushPromises, mount, VueWrapper } from '@vue/test-utils';
 import { describe, it, expect, beforeAll, beforeEach, afterEach, afterAll, } from 'vitest';
 import { createRouter, createWebHistory, Router } from 'vue-router';
 import { createTestingPinia } from '@pinia/testing'
-import { routes } from '../../src/router/routes';
-import { useAuthStore } from '../../src/store/auth';
-import { ROUTE_NAMES } from '../../src/router/types';
-import Header from '../../src/components/Header.vue';
+import { routes } from '../../../src/router/routes';
+import { useAuthStore } from '../../../src/store/auth';
+import { ROUTE_NAMES } from '../../../src/router/types';
+import Header from '../../../src/components/Header/Header.vue';
 import PrimeVue from 'primevue/config';
-import MobileNavigation from '../../src/components/MobileNavigation.vue';
-import MobileHamburger from '../../src/components/MobileHamburger.vue';
-import Navigation from '../../src/components/Navigation.vue';
+import MobileNavigation from '../../../src/components/Header/MobileNavigation.vue';
+import MobileHamburger from '../../../src/components/Header/MobileHamburger.vue';
+import Navigation from '../../../src/components/Header/Navigation.vue';
 
 describe('Header', () => {
     let router: Router;

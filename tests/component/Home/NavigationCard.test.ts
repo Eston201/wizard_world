@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createRouter, createWebHistory, Router } from 'vue-router';
-import { routes } from '../../src/router/routes';
-import { ROUTE_NAMES } from '../../src/router/types';
-import NavigationCard from '../../src/components/NavigationCard.vue';
+import { routes } from '../../../src/router/routes';
+import { ROUTE_NAMES } from '../../../src/router/types';
+import NavigationCard from '../../../src/components/Home/NavigationCard.vue';
 
 describe('NavigationCard', () => {
     let router: Router;

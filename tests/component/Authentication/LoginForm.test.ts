@@ -1,7 +1,7 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeAll } from 'vitest'
 import PrimeVue from 'primevue/config';
-import LoginForm from '../../src/components/LoginForm.vue';
+import LoginForm from '../../../src/components/Authentication/LoginForm.vue';
 
 describe('LoginForm', () => {
     let wrapper: VueWrapper;
