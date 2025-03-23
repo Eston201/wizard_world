@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import Navigation from '../../src/components/Navigation.vue';
-import { ROUTE_NAMES } from '../../src/router/types';
+import Navigation from '../../../src/components/Header/Navigation.vue';
+import { ROUTE_NAMES } from '../../../src/router/types';
 
 describe('Navigation', () => {
     it('renders correctly', () => {

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import FloatingCandle from '../../src/components/FloatingCandle.vue';
+import FloatingCandle from '../../../src/components/Decorative/FloatingCandle.vue';
 
 describe('FloatingCandle', () => {
     it('it renders correctly with defaults', () => {

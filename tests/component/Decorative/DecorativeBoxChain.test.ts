@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import DecorativeBoxChain from '../../src/components/DecorativeBoxChain.vue';
+import DecorativeBoxChain from '../../../src/components/Decorative/DecorativeBoxChain.vue';
 
 describe('DecorativeBoxChain', () => {
     it('renders correctly with default props', () => {

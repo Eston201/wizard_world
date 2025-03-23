@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import DecorativeTitle from '../../src/components/DecorativeTitle.vue';
-import DecorativeBoxChain from '../../src/components/DecorativeBoxChain.vue';
+import DecorativeTitle from '../../../src/components/Decorative/DecorativeTitle.vue';
+import DecorativeBoxChain from '../../../src/components/Decorative/DecorativeBoxChain.vue';
 
 describe('DecorativeTitle', () => {
     it('renders correctly', () => {

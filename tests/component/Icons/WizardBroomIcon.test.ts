@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
-import WizardBroomIcon from '../../src/components/WizardBroomIcon.vue';
+import WizardBroomIcon from '../../../src/components/Icons/WizardBroomIcon.vue';
 
 describe('WizardBroomIcon', () => {
     it('it renders defaults correctly', () => {
