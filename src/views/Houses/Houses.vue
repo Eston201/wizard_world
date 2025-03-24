@@ -1,46 +1,44 @@
 <template>
     <main class="houses-view__wrapper">
-        <Loader :is-loading="isPending" :delay="100">
+        <Loader :is-loading="isPending">
             Fetching Houses
         </Loader>
 
         <div class="houses-view-content" v-if="!isPending">
             <section class="carousel__wrapper">
                 <Carousel
-                    :value="data" 
+                    :value="houses" 
                     :numVisible="4" 
                     :numScroll="3"
                     :responsive-options="responsiveOptions"
                 >
-                    <template #item="{data}">
+                    <template #item="{data: house}">
                         <HouseBanner
-                            :house-name="data.name.toLowerCase()"
-                            :active="houseStore.selectedHouseId === data.id"
-                            @click="() => handleHouseClick(data)"
+                            :house-name="house.name.toLowerCase()"
+                            :active="houseStore.selectedHouseId === house.id"
+                            @click="() => handleHouseClick(house)"
                         >
                             <div class="router-link__wrapper">
                                 <router-link
                                     :to="{
                                         name: ROUTE_NAMES.HOUSE_DETAIL,
                                         params: {
-                                            id: data.name.toLowerCase()
+                                            id: house.name.toLowerCase()
                                         }
                                     }"
-                                    @click="() => houseStore.setSelectedHouse(data)"
+                                    @click="() => houseStore.setSelectedHouse(house)"
                                 >
-                                    {{ data.name }}
+                                    {{ house.name }}
                                 </router-link>
                             </div>
                         </HouseBanner>
                     </template>
                 </Carousel>
+
+                <p v-show="!houseStore.selectedHouse">Select A House</p>
             </section>
     
             <section class="houses-child-route__wrapper">
-                <div v-if="!houseStore.selectedHouse" class="router-view-msg">
-                    Select A House
-                </div>
-
                 <router-view></router-view>
             </section>
         </div>
@@ -59,10 +57,20 @@ import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
 import { ROUTE_NAMES } from '@/router/types';
 import type { IHouse } from '@/api/wizard-world/types';
 
-const toast = useToast();
 const router = useRouter();
 const houseStore = useWizardWorldHouseStore();
 
+const toast = useToast();
+function showErrorToast(message: string) {
+    toast.add({
+        severity: 'error', 
+        summary: 'Error', 
+        detail: message,
+        life: 3000 
+    });
+}
+
+// VuePrime carousel options
 const responsiveOptions = ref([
     {
         breakpoint: '1400px',
@@ -86,27 +94,22 @@ const responsiveOptions = ref([
     }
 ]);
 
-const {data, isPending, isError, error} = useHousesQuery();
+const {data: houses, isPending, isError, error} = useHousesQuery();
 // Set selected house when data is being refetched
 watch(isPending, (nextValue) => {
     // Still loading data
     if (nextValue) return;
     // data possibly fetched, check for errors
     if (isError.value) {
-        toast.add({ 
-            severity: 'error', 
-            summary: 'Error', 
-            detail: error.value?.message,
-            life: 3000 
-        });
+        showErrorToast(error.value?.message!);
         return;
     }
     // We have data so check if we need to set the house store 
     // If there is a id on the route
     const houseId = router.currentRoute.value.params.id;
     if (!houseId) return;
-    const house = data.value?.find((house) => house.name === houseId);
-    if (!house) return;
+    const house = houses.value?.find((house) => house.name.toLowerCase() === houseId);
+    if (!house) return showErrorToast(`House ${houseId} Not Found!`);
     houseStore.setSelectedHouse(house);
 });
 
@@ -139,6 +142,15 @@ onBeforeUnmount(() => {
 
 .carousel__wrapper {
     margin-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    & > p {
+        align-self: center;
+        font-size: 1.25rem;
+    }
 }
 
 .router-link__wrapper {

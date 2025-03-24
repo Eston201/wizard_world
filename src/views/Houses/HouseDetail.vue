@@ -1,5 +1,21 @@
 <template>
-    <article class="house-detail-card__wrapper" :style="houseColors">
+    <article 
+        v-if="!houseStore.selectedHouse" 
+        class="house-not-found__wrapper"
+    >
+        <div class="icon">
+            <PhWarning :size="32" color="red"/>
+        </div>
+        <div class="message">
+            House <span>{{ $route.params.id }}</span> Not Found !
+        </div>
+    </article>
+
+    <article 
+        v-else
+        class="house-detail-card__wrapper" 
+        :style="houseColors"
+    >
         <section class="general-details">
             <div class="description-header house-header">
                 <div class="slanted-box"></div>
@@ -70,7 +86,8 @@ import {
     PhMagicWand,
     PhPalette,
     PhPawPrint,
-    PhUser
+    PhUser,
+    PhWarning
 } from "@phosphor-icons/vue";
 import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
 import { computed, onBeforeUnmount } from 'vue';
@@ -127,6 +144,27 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+.house-not-found__wrapper {
+    height: 100%;
+    font-size: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    .message > span {
+        padding-inline: 4px;
+        &::before {
+            content: '\"';
+        }
+        &::after {
+            content: '\"';
+        }
+    }
+}
+
 .house-detail-card__wrapper {
     height: 100%;
 

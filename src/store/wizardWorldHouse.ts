@@ -13,7 +13,6 @@ export const useWizardWorldHouseStore = defineStore('wizardWorldHouse', () => {
         selectedHouse.value = undefined;
     }
     
-
     return {
         selectedHouse,
         selectedHouseId,

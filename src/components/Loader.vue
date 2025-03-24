@@ -1,6 +1,6 @@
 <template>
     <Teleport to="body">
-        <div class="loader-overlay" v-if="loading">
+        <div class="loader-overlay" v-if="isLoading">
             <div class="loader-content">
 
                 <div class="icon__wrapper">
@@ -34,36 +34,15 @@
 import SortingHatIcon from './Icons/SortingHatIcon.vue';
 import Ripple from './Decorative/Ripple.vue';
 import { motion } from 'motion-v';
-import { ref, watch } from 'vue';
 
 const MotionSortingHatIcon = motion.create(SortingHatIcon);
 
-const loading = ref(false);
-
-const props = defineProps({
+defineProps({
     isLoading: {
         type: Boolean,
         required: true,
         default: false
     },
-    delay: {
-        type: Number, // Delay in ms
-        default: 0
-    }
-});
-
-// Set a delay before showing the loader
-// This can prevent the loading to show up immediatly 
-// useful for tanstack cached data fetching
-watch(() => props.isLoading, (value) => {
-    if (value) {
-        setTimeout(() => {
-            loading.value = true;
-        }, props.delay);
-    }
-    else {
-        loading.value = false;
-    }
 });
 </script>
 

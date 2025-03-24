@@ -7,4 +7,9 @@ const IntersectionObserverMock = vi.fn(() => ({
   unobserve: vi.fn(),
 }));
 
-vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
+vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
+
+// Mock tanstack globally
+vi.mock('@tanstack/vue-query', () => ({
+  useQuery: vi.fn(),
+}));
