@@ -3,7 +3,7 @@
         <div 
             class="ripple"
             v-for="x of amount" :key="x + 'ripple'"
-            :style="{'--delay': `${x}s`}"
+            :style="{'--delay': `${x - 1}s`}"
         >
         </div>
         <slot></slot>
@@ -40,7 +40,7 @@ defineProps({
 @keyframes fadeGrow {
     from {
         opacity: 1;
-        transform: scale(0.2);
+        transform: scale(0.3);
     }
 
     to {

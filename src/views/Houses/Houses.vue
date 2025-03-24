@@ -1,10 +1,10 @@
 <template>
     <main class="houses-view__wrapper">
-        <div v-if="isPending">
-            Loading...
-        </div>
+        <Loader :is-loading="isPending" :delay="100">
+            Fetching Houses
+        </Loader>
 
-        <div class="houses-view-content" v-else>
+        <div class="houses-view-content" v-if="!isPending">
             <section class="carousel__wrapper">
                 <Carousel
                     :value="data" 
@@ -23,7 +23,7 @@
                                     :to="{
                                         name: ROUTE_NAMES.HOUSE_DETAIL,
                                         params: {
-                                            id: data.id
+                                            id: data.name.toLowerCase()
                                         }
                                     }"
                                     @click="() => houseStore.setSelectedHouse(data)"
@@ -36,7 +36,11 @@
                 </Carousel>
             </section>
     
-            <section class="house-child-route__wrapper">
+            <section class="houses-child-route__wrapper">
+                <div v-if="!houseStore.selectedHouse" class="router-view-msg">
+                    Select A House
+                </div>
+
                 <router-view></router-view>
             </section>
         </div>
@@ -46,7 +50,8 @@
 <script lang="ts" setup>
 import Carousel from 'primevue/carousel';
 import HouseBanner from '@/components/Houses/HouseBanner.vue';
-import { ref, watch } from 'vue';
+import Loader from '@/components/Loader.vue';
+import { onBeforeUnmount, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import { useHousesQuery } from '@/composables/wizard-world/useHouses';
@@ -100,7 +105,7 @@ watch(isPending, (nextValue) => {
     // If there is a id on the route
     const houseId = router.currentRoute.value.params.id;
     if (!houseId) return;
-    const house = data.value?.find((house) => house.id === houseId);
+    const house = data.value?.find((house) => house.name === houseId);
     if (!house) return;
     houseStore.setSelectedHouse(house);
 });
@@ -109,9 +114,13 @@ function handleHouseClick(house: IHouse) {
     houseStore.setSelectedHouse(house);
     router.push({
         name: ROUTE_NAMES.HOUSE_DETAIL,
-        params: { id: house.id}
+        params: { id: house.name.toLowerCase()}
     });
 }
+
+onBeforeUnmount(() => {
+    houseStore.clearSelectedHouse();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -144,7 +153,17 @@ function handleHouseClick(house: IHouse) {
     }
 }
 
-.house-child-route__wrapper {
+.houses-child-route__wrapper {
     flex: 1;
+}
+
+.router-view-msg {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
 }
 </style>

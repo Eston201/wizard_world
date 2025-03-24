@@ -10,7 +10,7 @@ describe('Ripple', () => {
         expect(ripples.length).toBe(5);
         // Delay
         ripples.forEach((ripple, idx) => {
-            expect(ripple.attributes('style')).toBe(`--delay: ${idx + 1}s;`);
+            expect(ripple.attributes('style')).toBe(`--delay: ${idx}s;`);
         });
     });
 
@@ -23,7 +23,7 @@ describe('Ripple', () => {
         const ripples = wrapper.findAll('.ripple')
         expect(ripples.length).toBe(10);
         ripples.forEach((ripple, idx) => {
-            expect(ripple.attributes('style')).toBe(`--delay: ${idx + 1}s;`);
+            expect(ripple.attributes('style')).toBe(`--delay: ${idx}s;`);
         });
     });
 });

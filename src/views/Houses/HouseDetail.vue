@@ -1,6 +1,5 @@
 <template>
     <article class="house-detail-card__wrapper" :style="houseColors">
-
         <section class="general-details">
             <div class="description-header house-header">
                 <div class="slanted-box"></div>
@@ -74,7 +73,7 @@ import {
     PhUser
 } from "@phosphor-icons/vue";
 import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
-import { computed } from 'vue';
+import { computed, onBeforeUnmount } from 'vue';
 import type { IHouse } from "@/api/wizard-world/types";
 
 const houseStore = useWizardWorldHouseStore();
@@ -121,6 +120,10 @@ const detailsMapper = [
         icon: PhCube
     },
 ];
+
+onBeforeUnmount(() => {
+    houseStore.clearSelectedHouse();
+});
 </script>
 
 <style lang="scss" scoped>
