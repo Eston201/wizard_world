@@ -1,50 +1,56 @@
 <template>
-    <main>
+    <main class="houses-view__wrapper">
         <div v-if="isPending">
             Loading...
         </div>
 
-        <Carousel
-            v-else
-            :value="data" 
-            :numVisible="4" 
-            :numScroll="3"
-            :responsive-options="responsiveOptions"
-        >
-            <template #item="slotProps">
-                <article class="house-card" @click="() => handleHouseClick(slotProps.data)">
-                    <div class="house-img__wrapper">
-                        <img :src="`/images/houses/${slotProps.data.name}.png`" :alt="slotProps.data.name + 'logo'" />
-                    </div>
-
-                    <div class="router-link__wrapper">
-                        <router-link
-                            :to="{
-                                name: ROUTE_NAMES.HOUSE_DETAIL,
-                                params: {
-                                    id: slotProps.data.id
-                                }
-                            }"
-                            @click="() => houseStore.setSelectedHouse(slotProps.data)"
+        <div class="houses-view-content" v-else>
+            <section class="carousel__wrapper">
+                <Carousel
+                    :value="data" 
+                    :numVisible="4" 
+                    :numScroll="3"
+                    :responsive-options="responsiveOptions"
+                >
+                    <template #item="{data}">
+                        <HouseBanner
+                            :house-name="data.name.toLowerCase()"
+                            :active="houseStore.selectedHouseId === data.id"
+                            @click="() => handleHouseClick(data)"
                         >
-                            {{ slotProps.data.name }}
-                        </router-link>
-                    </div>
-                </article>
-            </template>
-        </Carousel>
-
-        <router-view></router-view>
+                            <div class="router-link__wrapper">
+                                <router-link
+                                    :to="{
+                                        name: ROUTE_NAMES.HOUSE_DETAIL,
+                                        params: {
+                                            id: data.id
+                                        }
+                                    }"
+                                    @click="() => houseStore.setSelectedHouse(data)"
+                                >
+                                    {{ data.name }}
+                                </router-link>
+                            </div>
+                        </HouseBanner>
+                    </template>
+                </Carousel>
+            </section>
+    
+            <section class="house-child-route__wrapper">
+                <router-view></router-view>
+            </section>
+        </div>
     </main>
 </template>
 
 <script lang="ts" setup>
-import { useHousesQuery } from '@/composables/wizard-world/useHouses';
-import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
-import { useToast } from 'primevue/usetoast';
 import Carousel from 'primevue/carousel';
+import HouseBanner from '@/components/Houses/HouseBanner.vue';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useToast } from 'primevue/usetoast';
+import { useHousesQuery } from '@/composables/wizard-world/useHouses';
+import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
 import { ROUTE_NAMES } from '@/router/types';
 import type { IHouse } from '@/api/wizard-world/types';
 
@@ -109,35 +115,36 @@ function handleHouseClick(house: IHouse) {
 </script>
 
 <style lang="scss" scoped>
-.house-card {
+.houses-view__wrapper {
     height: 100%;
     width: 100%;
-    
+}
+
+.houses-view-content {
+    height: 100%;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border-radius: 6px;
-    cursor: pointer;
+    padding-bottom: 22px;
+}
 
-    .house-img__wrapper {
-        flex: 1;
-        max-width: 125px;
+.carousel__wrapper {
+    margin-top: 32px;
+}
 
-        img {
-            height: 100%;
-            object-fit: cover;
-        }
+.router-link__wrapper {
+    width: 100%;
+    text-align: center;
+
+    a {
+        display: block;
+        color: hsl(var(--text-color));
+        font-size: 1.25rem;
+        text-decoration: none;
     }
+}
 
-    .router-link__wrapper {
-        width: 100%;
-        text-align: center;
-        
-        a {
-            color: hsl(var(--text-color));
-            font-size: 1.25rem;
-            text-decoration: none;
-        }
-    }
+.house-child-route__wrapper {
+    flex: 1;
 }
 </style>
