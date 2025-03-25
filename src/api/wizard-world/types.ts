@@ -20,4 +20,5 @@ export interface IHouse {
     commonRoom: string;
     heads: IHouseHead[];
     traits: IHouseTrait[];
+    slug: string;
 }

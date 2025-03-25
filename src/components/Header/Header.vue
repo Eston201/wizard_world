@@ -6,7 +6,7 @@
             </div>
 
             <Navigation 
-                v-if="authStore.isAuthenticated && route.name !== ROUTE_NAMES.HOME"
+                v-if="navVisible"
                 class="desktop-nav"
             >
                 <template #default="{route}">
@@ -42,13 +42,19 @@
 import { ROUTE_NAMES } from '@/router/types';
 import { useAuthStore } from '@/store/auth';
 import { useRoute } from 'vue-router';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import MobileHamburger from './MobileHamburger.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Navigation from './Navigation.vue';
 
 const route = useRoute();
 const authStore = useAuthStore();
+
+const navVisible = computed(() => {
+    if (!authStore.isAuthenticated) return false;
+    else if (route.name === ROUTE_NAMES.AUTH || route.name === ROUTE_NAMES.HOME) return false;
+    return true;
+});
 
 // Mobile
 const isMobileVisible = ref(false);

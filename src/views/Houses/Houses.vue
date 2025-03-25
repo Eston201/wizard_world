@@ -23,7 +23,7 @@
                                     :to="{
                                         name: ROUTE_NAMES.HOUSE_DETAIL,
                                         params: {
-                                            id: house.name.toLowerCase()
+                                            id: house.slug
                                         }
                                     }"
                                     @click="() => houseStore.setSelectedHouse(house)"
@@ -49,7 +49,7 @@
 import Carousel from 'primevue/carousel';
 import HouseBanner from '@/components/Houses/HouseBanner.vue';
 import Loader from '@/components/Loader.vue';
-import { onBeforeUnmount, ref, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import { useHousesQuery } from '@/composables/wizard-world/useHouses';
@@ -106,10 +106,10 @@ watch(isPending, (nextValue) => {
     }
     // We have data so check if we need to set the house store 
     // If there is a id on the route
-    const houseId = router.currentRoute.value.params.id;
-    if (!houseId) return;
-    const house = houses.value?.find((house) => house.name.toLowerCase() === houseId);
-    if (!house) return showErrorToast(`House ${houseId} Not Found!`);
+    const houseSlug = router.currentRoute.value.params.id;
+    if (!houseSlug) return;
+    const house = houses.value?.find((house) => house.slug === houseSlug);
+    if (!house) return showErrorToast(`House ${houseSlug} Not Found!`);
     houseStore.setSelectedHouse(house);
 });
 
@@ -117,7 +117,7 @@ function handleHouseClick(house: IHouse) {
     houseStore.setSelectedHouse(house);
     router.push({
         name: ROUTE_NAMES.HOUSE_DETAIL,
-        params: { id: house.name.toLowerCase()}
+        params: { id: house.slug}
     });
 }
 

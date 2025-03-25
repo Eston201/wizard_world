@@ -23,7 +23,7 @@ export const routes: RouteRecordRaw[] = [
         name: ROUTE_NAMES.HOME, 
         component: Home,
         meta: {
-            requiresAuth: false
+            requiresAuth: true
         }
     },
     {
@@ -31,7 +31,7 @@ export const routes: RouteRecordRaw[] = [
         name: ROUTE_NAMES.HOUSES,
         component: Houses,
         meta: {
-            requiresAuth: false
+            requiresAuth: true
         },
         children: [
             {
@@ -39,7 +39,7 @@ export const routes: RouteRecordRaw[] = [
                 name: ROUTE_NAMES.HOUSE_DETAIL,
                 component: HouseDetail,
                 meta: {
-                    requiresAuth: false 
+                    requiresAuth: true 
                 }
             }
         ]
@@ -49,7 +49,7 @@ export const routes: RouteRecordRaw[] = [
         name: ROUTE_NAMES.SPELLS,
         component: Spells,
         meta: {
-            requiresAuth: false
+            requiresAuth: true
         }
     },
     {
@@ -57,7 +57,7 @@ export const routes: RouteRecordRaw[] = [
         name: ROUTE_NAMES.ELIXIRS,
         component: Elixirs,
         meta: {
-            requiresAuth: false
+            requiresAuth: true
         }
     }
 ];

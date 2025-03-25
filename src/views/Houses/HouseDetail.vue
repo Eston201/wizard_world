@@ -96,7 +96,7 @@ import type { IHouse } from "@/api/wizard-world/types";
 const houseStore = useWizardWorldHouseStore();
 const houseColors = computed(() => {
     if (!houseStore.selectedHouse) return {};
-    const houseName = houseStore.selectedHouse.name.toLowerCase();
+    const houseName = houseStore.selectedHouse.slug;
 
     const primary = `var(--${houseName}-primary)`;
     const secondary = `var(--${houseName}-secondary)`;
