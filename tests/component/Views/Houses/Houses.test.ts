@@ -2,7 +2,6 @@ import { describe, it, beforeEach, vi, expect } from "vitest";
 import { flushPromises, mount, VueWrapper } from '@vue/test-utils';
 import { createRouter, createWebHistory, Router} from 'vue-router';
 import { useQuery } from "@tanstack/vue-query";
-import { IHouse } from "../../../../src/api/wizard-world/utils";
 import { routes } from '../../../../src/router/routes';
 import { ROUTE_NAMES } from "../../../../src/router/types";
 import { createPinia } from "pinia";
@@ -11,35 +10,8 @@ import { ref } from "vue";
 import APP from '../../../../src/App.vue';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
-
-const dummyHouses: IHouse[] = [
-    {
-        id: 'test 1',
-        name: "test 1",
-        slug: 'test-1',
-        houseColours: "black and white",
-        founder: "test 1",
-        animal: "test 1",
-        element: "test 1",
-        ghost: "test 1",
-        commonRoom: "",
-        heads: [],
-        traits: []
-    },
-    {
-        id: 'test 2',
-        name: "test 2",
-        slug: 'test-2',
-        houseColours: "blue and red",
-        founder: "test 2",
-        animal: "test 2",
-        element: "test 2",
-        ghost: "test 2",
-        commonRoom: "",
-        heads: [],
-        traits: []
-    },
-];
+// @ts-ignore
+import { dummyHouses } from '../../../common';
 
 let router: Router;
 describe('Houses', () => {

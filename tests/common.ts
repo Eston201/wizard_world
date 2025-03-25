@@ -1,4 +1,4 @@
-import { IHouse } from "../src/api/wizard-world/utils";
+import { IHouse, ISpell } from "../src/api/wizard-world/utils";
 
 export const dummyHouses: IHouse[] = [
     {
@@ -26,5 +26,28 @@ export const dummyHouses: IHouse[] = [
         commonRoom: "",
         heads: [],
         traits: []
+    },
+];
+
+export const dummySpells: ISpell[] = [
+    {
+        id: "2123-32312-3123",
+        name: "testing spell",
+        incantation: "IDoTest",
+        effect: "calls a test",
+        canBeVerbal: false,
+        type: "unit",
+        light: "heavy",
+        creator: "vitest"
+    },
+    {
+        id: "2123-32312-3123",
+        name: "vue spell",
+        incantation: "vue",
+        effect: "create a vue project",
+        canBeVerbal: true,
+        type: "component",
+        light: "light",
+        creator: "vitest"
     },
 ];
