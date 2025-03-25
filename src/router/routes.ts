@@ -32,15 +32,17 @@ export const routes: RouteRecordRaw[] = [
         component: Houses,
         meta: {
             requiresAuth: true
-        }
-    },
-    {
-        path: '/houses/:id',
-        name: "",
-        component: HouseDetail,
-        meta: {
-            requiresAuth: true 
-        }
+        },
+        children: [
+            {
+                path: '/houses/:id',
+                name: ROUTE_NAMES.HOUSE_DETAIL,
+                component: HouseDetail,
+                meta: {
+                    requiresAuth: true 
+                }
+            }
+        ]
     },
     {
         path: '/spells',

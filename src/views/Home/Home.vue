@@ -3,7 +3,9 @@
         <NavigationCard
             class="nav-card"
             v-for="{label, route, imgSrc, order} of navigationCards"
-            :style="{order}"
+            :style="{
+                '--order': order,
+            }"
             :key="route"
             :routeName="route" 
             :backgroundImgPath="`/images/home/${imgSrc}`"
@@ -54,5 +56,11 @@ const navigationCards = [
     flex: 1;
     min-width: 200px;
     max-width: 300px;
+
+    order: var(--order);
+    
+    @include mobileAndBelow() {
+        order: revert;
+    }
 }
 </style>
