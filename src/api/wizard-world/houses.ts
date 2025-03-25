@@ -1,29 +1,35 @@
 import { API_CONFIG } from "@/constants";
-import catchAsync from "../../utils/catchAsync";
-import type { IHouse } from "./types";
+import type { IHouse } from "./utils";
 import ApiError from "@/utils/ApiError";
 import slugify from "slugify";
+import request from '@/utils/request';
 
 const housesAPI = `${API_CONFIG.wizardWorld}/Houses`;
 
-export const fetchHouses = catchAsync(async (): Promise<IHouse[]> => {
-    const response = await fetch(housesAPI);
-    const data: IHouse[] = await response.json();
-    // Add slug
-    return data.map((house) => ({
+export const fetchHouses = async (): Promise<IHouse[]> => {
+    const response = await request("GET", housesAPI);
+    if (response.error) throw new Error("Someting went wrong!");
+    // Add slug and return
+    return (response as IHouse[]).map((house) => ({
         ...house,
         slug: slugify(house.name, {lower: true})
     }));
-});
+};
 
-export const fetchHouseWithId = catchAsync(async (id: string): Promise<IHouse> => {
-    const response = await fetch(`${housesAPI}/${id}`);
-    const data = await response.json();
-    if (data.status === 400) {
-        throw new ApiError('House not found!', 400);
+export const fetchHouseWithId = async (id: string): Promise<IHouse> => {
+    const response = await request("GET", `${housesAPI}/${id}`);
+
+    if (response.error) {
+        if (!response.data) throw new Error('Something went wrong!');
+        // Api Error
+        const errorData = response.data;
+        if (errorData.status === 404) throw new ApiError(errorData.title, 404);
+        else throw new ApiError('House not found!', 400);
     }
-    else if (data.status === 404) {
-        throw new ApiError(data.title, 404);
-    }
-    return data;
-});
+
+    // Add slug and return
+    return {
+        ...response.data,
+        slug: slugify(response.data.name)
+    };
+};

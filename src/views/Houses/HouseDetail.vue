@@ -91,7 +91,7 @@ import {
 } from "@phosphor-icons/vue";
 import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
 import { computed, onBeforeUnmount } from 'vue';
-import type { IHouse } from "@/api/wizard-world/types";
+import type { IHouse } from "@/api/wizard-world/utils";
 
 const houseStore = useWizardWorldHouseStore();
 const houseColors = computed(() => {

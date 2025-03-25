@@ -21,13 +21,15 @@ import Header from '@/components/Header/Header.vue';
 
 <style lang="scss" scoped>
 .app-content__wrapper {
-  height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 
   .router__wrapper {
     flex: 1;
     padding-inline: var(--viewport-padding);
+    display: flex;
+    flex-direction: column; // So that we can get full height route containers :) 
   }
 }
 

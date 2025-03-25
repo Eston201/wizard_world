@@ -1,4 +1,4 @@
-import { IHouse } from "../src/api/wizard-world/types";
+import { IHouse } from "../src/api/wizard-world/utils";
 
 export const dummyHouses: IHouse[] = [
     {

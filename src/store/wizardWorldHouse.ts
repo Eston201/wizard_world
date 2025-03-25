@@ -1,4 +1,4 @@
-import type { IHouse } from "@/api/wizard-world/types";
+import type { IHouse } from "@/api/wizard-world/utils";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 

@@ -42,7 +42,8 @@ const navigationCards = [
 
 <style lang="scss" scoped>
 .home-page__wrapper {
-    height: 100%;
+    flex: 1;
+    width: 100%;
     padding-bottom: var(--viewport-padding);
 
     display: flex;

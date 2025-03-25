@@ -55,7 +55,7 @@ import { useToast } from 'primevue/usetoast';
 import { useHousesQuery } from '@/composables/wizard-world/useHouses';
 import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
 import { ROUTE_NAMES } from '@/router/types';
-import type { IHouse } from '@/api/wizard-world/types';
+import type { IHouse } from '@/api/wizard-world/utils';
 
 const router = useRouter();
 const houseStore = useWizardWorldHouseStore();

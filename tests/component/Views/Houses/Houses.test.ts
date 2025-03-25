@@ -2,7 +2,7 @@ import { describe, it, beforeEach, vi, expect } from "vitest";
 import { flushPromises, mount, VueWrapper } from '@vue/test-utils';
 import { createRouter, createWebHistory, Router} from 'vue-router';
 import { useQuery } from "@tanstack/vue-query";
-import { IHouse } from "../../../../src/api/wizard-world/types";
+import { IHouse } from "../../../../src/api/wizard-world/utils";
 import { routes } from '../../../../src/router/routes';
 import { ROUTE_NAMES } from "../../../../src/router/types";
 import { createPinia } from "pinia";
