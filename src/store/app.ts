@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const useAppStore = defineStore('user', () => {
+export const useAppStore = defineStore('app', () => {
     const overFlowHidden = ref(false);
 
     function toggleOverFlowOn() {

@@ -82,3 +82,19 @@ export type IElixirSearchParams = {
     inventor: string;
     manufacturer: string;
 }
+
+export const ElixirDifficulties = {
+    'Unknown': 'Unknown',
+    'Advanced': 'Advanced',
+    'Moderate': 'Moderate',
+    'Beginner': 'Beginner',
+    'OrdinaryWizardingLevel': 'OrdinaryWizardingLevel',
+    'OneOfAKind': 'OneOfAKind',
+} as const;
+
+export type TElixirDifficulty = typeof ElixirDifficulties[keyof typeof ElixirDifficulties];
+
+export const HeadmasterRestrictedElixirDifficulties: string[] = [
+    ElixirDifficulties.Advanced,
+    ElixirDifficulties.OneOfAKind
+];
