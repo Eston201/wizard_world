@@ -8,6 +8,7 @@ const Houses = () => import('@/views/Houses/Houses.vue');
 const HouseDetail = () => import('@/views/Houses/HouseDetail.vue');
 const Spells = () => import('@/views/Spells/Spells.vue');
 const Elixirs = () => import('@/views/Elixirs/Elixirs.vue');
+const ElixirDifficulty = () => import('@/views/Elixirs/ElixirDifficulty.vue');
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -58,6 +59,13 @@ export const routes: RouteRecordRaw[] = [
         component: Elixirs,
         meta: {
             requiresAuth: true
-        }
+        },
+        children: [
+            {
+                path: '/elixirs/:difficulty',
+                name: ROUTE_NAMES.ELIXIR_DIFFICULTY,
+                component: ElixirDifficulty,
+            }
+        ]
     }
 ];

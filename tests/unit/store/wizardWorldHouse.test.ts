@@ -1,7 +1,8 @@
 import { describe, beforeEach, it, expect } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia'
 import { useWizardWorldHouseStore } from '../../../src/store/wizardWorldHouse';
-import { IHouse } from '../../../src/api/wizard-world/types';
+import { IHouse } from '../../../src/api/wizard-world/utils';
+import slugify from 'slugify';
 
 const dummyHouse: IHouse = {
     id: 'Test id',
@@ -14,9 +15,10 @@ const dummyHouse: IHouse = {
     commonRoom: 'dog',
     heads: [{id: "Me", firstName: "me", lastName: "me"}],
     traits: [{
-        id: 'everything',
-        name: 'everything'
-    }]
+      id: 'everything',
+      name: 'everything'
+    }],
+    slug: slugify('Test House Name')
 }
 
 describe('Wizard World House Store', () => {
