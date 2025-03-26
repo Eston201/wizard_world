@@ -8,12 +8,14 @@
             <section class="carousel__wrapper">
                 <Carousel
                     :value="houses" 
-                    :numVisible="4" 
+                    :numVisible="4"
                     :numScroll="3"
                     :responsive-options="responsiveOptions"
                 >
                     <template #item="{data: house}">
-                        <HouseBanner
+                        <MotionHouseBanner
+                            :while-press="{scale: 0.9, y: -4}"
+                            :transition="{type: 'spring', duration: 0.4, damping: 10}"
                             :house-name="house.name.toLowerCase()"
                             :active="houseStore.selectedHouseId === house.id"
                             @click="() => handleHouseClick(house)"
@@ -31,7 +33,7 @@
                                     {{ house.name }}
                                 </router-link>
                             </div>
-                        </HouseBanner>
+                        </MotionHouseBanner>
                     </template>
                 </Carousel>
 
@@ -56,6 +58,9 @@ import { useHousesQuery } from '@/composables/wizard-world/useHouses';
 import { useWizardWorldHouseStore } from '@/store/wizardWorldHouse';
 import { ROUTE_NAMES } from '@/router/types';
 import type { IHouse } from '@/api/wizard-world/utils';
+import { motion } from 'motion-v';
+
+const MotionHouseBanner = motion.create(HouseBanner);
 
 const router = useRouter();
 const houseStore = useWizardWorldHouseStore();

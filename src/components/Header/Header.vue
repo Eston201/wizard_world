@@ -5,7 +5,7 @@
                 <router-link class="home-link" to="/">Wizward World</router-link>
             </div>
 
-            <Navigation 
+            <Navigation
                 v-if="navVisible"
                 class="desktop-nav"
             >
@@ -20,6 +20,13 @@
             </Navigation>
             
             <div class="spacer"/>
+
+            <Button
+                v-if="authStore.isAuthenticated"
+                class="logout-btn" 
+                @click="authStore.logout" 
+                label="Logout"
+            />
 
             <div
                 class="mobile-menu__wrapper" 
@@ -43,6 +50,7 @@ import { ROUTE_NAMES } from '@/router/types';
 import { useAuthStore } from '@/store/auth';
 import { useRoute } from 'vue-router';
 import { computed, ref } from 'vue';
+import { Button } from 'primevue';
 import MobileHamburger from './MobileHamburger.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Navigation from './Navigation.vue';
@@ -152,6 +160,12 @@ header {
     flex: 1;
 
     @include tabletAndBelow() {
+        display: none;
+    }
+}
+
+.logout-btn {
+    @include mobileAndBelow() {
         display: none;
     }
 }

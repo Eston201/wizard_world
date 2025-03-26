@@ -24,18 +24,22 @@
                         </router-link>
                     </template>
                 </Navigation>
+
+                <Button @click="authStore.logout" label="Logout"/>
             </div>
         </template>
     </Drawer>
 </template>
 
 <script setup lang="ts">
-import { Drawer } from 'primevue';
+import { Drawer, Button } from 'primevue';
 import VisuallyHidden from '../VisuallyHidden.vue';
 import MobileHamburger from './MobileHamburger.vue';
 import Navigation from './Navigation.vue';
+import { useAuthStore } from '@/store/auth';
 
 const emit = defineEmits(['closeMobileNav']);
+const authStore = useAuthStore();
 
 defineProps({
     isVisible: {

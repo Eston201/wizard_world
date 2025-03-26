@@ -65,6 +65,9 @@ export const routes: RouteRecordRaw[] = [
                 path: '/elixirs/:difficulty',
                 name: ROUTE_NAMES.ELIXIR_DIFFICULTY,
                 component: ElixirDifficulty,
+                meta: {
+                    requiresRole: true
+                }
             }
         ]
     }

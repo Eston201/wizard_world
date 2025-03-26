@@ -1,34 +1,39 @@
 <template>
     <main class="elixirs-view__wrapper">
-        <Tabs :value="difficulty" scrollable>
+        <Tabs :value="activeDifficulty" scrollable>
             <TabList> 
                 <Tab
-                    v-for="{label, value} in spellDifficulties" 
-                    :key="label" 
-                    :value="value"
+                    v-for="difficulty in ElixirDifficulties" 
+                    :key="difficulty" 
+                    :value="difficulty"
                     @click="$router.push({
                         name: ROUTE_NAMES.ELIXIR_DIFFICULTY,
-                        params: {
-                            difficulty: value
-                        }
+                        params: { difficulty }
                     })"
+                    :disabled="isElixirDifficultyLocked(difficulty)"
                 >
                     <router-link
-                        class="difficulty-link"
+                        :class="[
+                            'difficulty-link', 
+                            {'locked': isElixirDifficultyLocked(difficulty)}
+                        ]"
                         :to="{
                             name: ROUTE_NAMES.ELIXIR_DIFFICULTY,
-                            params: {
-                                difficulty: value
-                            }
+                            params: { difficulty }
                         }"
                     >
-                        {{ label }}
+                        <div class="icon">
+                            <PhLock :size="24" weight="light"/>
+                        </div>
+                        {{ formatCamelCase(difficulty) }}
                     </router-link>
                 </Tab>
             </TabList>
         </Tabs>
 
-        <p v-if="!difficulty">Select A Difficulty</p>
+        <div v-if="!activeDifficulty" class="select-elixir-msg">
+            <span>Select A Difficulty</span>
+        </div>
         
 
         <div class="elixir-child-route__wrapper">
@@ -40,27 +45,31 @@
 
 <script setup lang="ts">
 import { ROUTE_NAMES } from '@/router/types';
+import { ElixirDifficulties, HeadmasterRestrictedElixirDifficulties, type TElixirDifficulty } from '@/api/wizard-world/utils';
 import { useOverFlowToggle } from '@/composables/useOverFlowToggle';
 import { Tabs, TabList, Tab, ScrollTop } from 'primevue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-
-const spellDifficulties = [
-    {label: 'Unknown', value: 'Unknown'},
-    {label: 'Advanced', value: 'Advanced'},
-    {label: 'Moderate', value: 'Moderate'},
-    {label: 'Beginner', value: 'Beginner'},
-    {label: 'Ordinary Wizarding Level', value: 'OrdinaryWizardingLevel'},
-    {label: 'One Of A Kind', value: 'OneOfAKind'},
-];
-
-const route = useRoute();
-const difficulty = computed(() => {
-    return (route.params.difficulty || '') as string
-});
+import { formatCamelCase } from '@/utils/utils';
+import { ROLE, useUserStore } from '@/store/user';
+import { PhLock } from '@phosphor-icons/vue';
 
 // Hide fullpage scrolling
 useOverFlowToggle();
+const route = useRoute();
+const userStore = useUserStore();
+
+const activeDifficulty = computed(() => {
+    return (route.params.difficulty || '') as string
+});
+
+function isElixirDifficultyLocked(difficulty: TElixirDifficulty) {
+    if (
+        userStore.user.role === ROLE.EXPLORER && 
+        HeadmasterRestrictedElixirDifficulties.includes(difficulty)
+    ) return true;
+    return false;
+}
 </script>
 
 <style lang="scss" scoped>
@@ -79,8 +88,31 @@ useOverFlowToggle();
     position: relative;
     color: inherit;
     text-decoration: none;
+
+    .icon {
+        display: none;
+    }
+
+    &.locked {
+        display: flex;
+        gap: 8px;
+
+        .icon {
+            display: revert;
+        }
+    }
 }
 
+.select-elixir-msg {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
 
 .elixir-child-route__wrapper {
     flex: 1;
