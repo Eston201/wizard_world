@@ -2,11 +2,11 @@ import { describe, it, beforeEach, vi, expect } from "vitest";
 import { mount, VueWrapper} from '@vue/test-utils';
 import { useQuery } from "@tanstack/vue-query";
 import { ref } from "vue";
-import Spells from '../../../../src/views/Spells/Spells.vue';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
 import { dummySpells } from "../../../common";
 import { PhArrowsOut } from "@phosphor-icons/vue";
+import Spells from "../../../../src/views/Spells/Spells.vue";
 
 describe('Houses', () => {
     beforeEach(() => {
@@ -113,8 +113,4 @@ describe('Houses', () => {
         const icon = wrapper.getComponent(PhArrowsOut) as unknown as VueWrapper;
         expect(icon.exists()).toBe(true);
     });
-
-    // describe("Filters", () => {
-
-    // });
 });

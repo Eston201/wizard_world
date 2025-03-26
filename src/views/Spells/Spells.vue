@@ -211,7 +211,7 @@ function formatSpellType(type: string) {
 
 <style lang="scss" scoped>
 .spells-view__wrapper {
-    flex: 1;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 22px;

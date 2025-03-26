@@ -1,8 +1,14 @@
 <template>
-  <div class="app-content__wrapper">
+  <div 
+    class="app-content__wrapper"
+    :style="{overflow: (appStore.overFlowHidden) ? 'hidden' : 'revert'}"
+  >
     <Header/>
 
-    <div class="router__wrapper">
+    <div 
+      class="router__wrapper"
+      :style="{overflow: (appStore.overFlowHidden) ? 'auto' : 'revert'}"
+    >
       <router-view v-slot="{ Component }">
         <transition name="fadeBlur" mode="out-in">
           <component :is="Component" />
@@ -17,19 +23,28 @@
 <script setup lang="ts">
 import { Toast } from 'primevue';
 import Header from '@/components/Header/Header.vue';
+import { useAppStore } from './store/app';
+
+const appStore = useAppStore();
 </script>
 
 <style lang="scss" scoped>
 .app-content__wrapper {
-  min-height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 
+  /* overflow: hidden; */
+  &.hide-overflow {
+    overflow: hidden;
+  }
+
   .router__wrapper {
+    /* overflow-y: auto; */
     flex: 1;
     padding-inline: var(--viewport-padding);
-    display: flex;
-    flex-direction: column; // So that we can get full height route containers :) 
+    /* display: flex; */
+    /* flex-direction: column; // So that we can get full height route containers :)  */
   }
 }
 

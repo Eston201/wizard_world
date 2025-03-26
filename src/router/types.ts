@@ -5,4 +5,5 @@ export const ROUTE_NAMES = {
     HOUSE_DETAIL: 'house_detail',
     SPELLS: 'spells',
     ELIXIRS: 'elixirs',
+    ELIXIR_DIFFICULTY: 'elixir_difficulty',
 } as const;

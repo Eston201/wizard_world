@@ -1,16 +1,16 @@
 import { API_CONFIG } from "@/constants";
 import { 
     buildErrorMessage, 
-    type ISpell, 
-    type ISpellSearchParams 
+    type IElixir,
+    type IElixirSearchParams, 
 } from "./utils";
 import ApiError from "@/utils/ApiError";
 import request from "@/utils/request";
 
-const spellsAPI = `${API_CONFIG.wizardWorld}/Spells`;
+const elixirAPI = `${API_CONFIG.wizardWorld}/Elixirs`;
 
-export const fetchSpells = async (searchParams: ISpellSearchParams): Promise<ISpell[]> => {
-    const response = await request("GET", spellsAPI, searchParams);
+export const fetchElixirs = async (searchParams: IElixirSearchParams): Promise<IElixir[]> => {
+    const response = await request("GET", elixirAPI, searchParams);
     // Check for api Errors
     if (response.error && response.status === 400) {
         const errorListObject = response.data.errors;

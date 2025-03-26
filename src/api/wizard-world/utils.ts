@@ -49,3 +49,36 @@ export interface ISpell {
 }
 
 export type ISpellSearchParams = Partial<Pick<ISpell, 'name' | 'type' | 'incantation'>>
+
+export interface IIngredient {
+    id: string,
+    name: string
+}
+
+export interface IInventor {
+    id: string,
+    firstName: string,
+    lastName: string
+}
+
+// Elixirs
+export interface IElixir {
+    id: string,
+    name: string,
+    effect: string,
+    sideEffects: string,
+    characteristics: string,
+    time: string,
+    difficulty: string,
+    ingredients: IIngredient[],
+    inventors: IInventor[],
+    manufacturer: string
+}
+
+export type IElixirSearchParams = {
+    name: string;
+    difficulty: string;
+    ingredient: string;
+    inventor: string;
+    manufacturer: string;
+}

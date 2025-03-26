@@ -6,7 +6,7 @@ export const HEADMASTER_AUTH = 'headmaster';
 export const EXPLORER_AUTH = 'explorer';
 
 export const useAuthStore = defineStore('auth', () => {
-    const isAuthenticated = ref(false);
+    const isAuthenticated = ref(true);
 
     function login(username: string, password: string) {
         const userStore = useUserStore();
