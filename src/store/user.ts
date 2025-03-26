@@ -15,7 +15,7 @@ interface User {
 
 export const useUserStore = defineStore('user', () => {
     const user = reactive<User>({
-        role: 'headmaster',
+        role: undefined,
         username: '',
     });
 
@@ -24,8 +24,14 @@ export const useUserStore = defineStore('user', () => {
         user.username = username;
     }
 
+    function clearUser() {
+        user.role = undefined;
+        user.username = '';
+    }
+
     return {
         user,
-        setUser
+        setUser,
+        clearUser
     }
 });

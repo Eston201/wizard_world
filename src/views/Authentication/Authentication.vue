@@ -24,10 +24,24 @@ import FloatingCandle from '@/components/Decorative/FloatingCandle.vue';
 import { useAuthStore } from '@/store/auth';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
+import { onMounted } from 'vue';
+import { useUserStore, type TRole } from '@/store/user';
 
 const router = useRouter();
 const toast = useToast();
 const authStore = useAuthStore();
+const userStore = useUserStore();
+
+onMounted(() => {
+    // Cheap way to stay logged in 
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+        console.log(loggedInUser);
+        authStore.isAuthenticated = true;
+        userStore.setUser(loggedInUser as TRole, loggedInUser);
+        router.push('/');
+    }
+})
 
 function handleLogin(username: string, password: string) {
     const validAuth = authStore.login(username, password);

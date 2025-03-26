@@ -8,7 +8,7 @@
             <section class="carousel__wrapper">
                 <Carousel
                     :value="houses" 
-                    :numVisible="4" 
+                    :numVisible="4"
                     :numScroll="3"
                     :responsive-options="responsiveOptions"
                 >
