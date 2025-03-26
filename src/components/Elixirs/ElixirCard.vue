@@ -1,52 +1,53 @@
 <template>
     <article class="elixir-detail-card">
         <h3>{{ elixir.name }}</h3>
-        <dl class="elixir-detail-list">
-            <div 
-                v-for="{label, icon} of descriptionLabelIcons" 
-                :key="label" 
-                class="elixir-description"
-            >
-                <dt>
-                    <div class="icon">
-                        <component :is="icon" :size="26" weight="light"/>
-                    </div>
-                    <span>{{ formatCamelCase(label) }}</span>
-                </dt>
-                <dd>
-                    {{ elixir[label as keyof IElixir] || 'Unknown' }}
-                </dd>
-            </div>
-        </dl>
 
-        <div class="elixir-list__description">
-            <!-- Ingredients -->
-            <div class="elixir-list__wrapper">
-                <div class="list-header">
-                    <div class="icon">
-                        <PhBowlSteam :size="26" weight="light"/>
-                    </div>
-                    <span>Ingredients</span>
+        <div class="detail-divider">
+            <dl class="elixir-detail-list">
+                <div 
+                    v-for="{label, icon} of descriptionLabelIcons" 
+                    :key="label" 
+                    class="elixir-description"
+                >
+                    <dt>
+                        <div class="icon">
+                            <component :is="icon" :size="26" weight="light"/>
+                        </div>
+                        <span>{{ formatCamelCase(label) }}</span>
+                    </dt>
+                    <dd>
+                        {{ elixir[label as keyof IElixir] || 'Unknown' }}
+                    </dd>
                 </div>
+            </dl>
     
-                <ul class="description-list">
-                    <li v-for="ingredient of elixir.ingredients">{{ ingredient.name }}</li>
-                    <li v-if="elixir.ingredients.length === 0">Unknown</li>
-                </ul>
-            </div>
-            <!-- Inventors -->
-            <div class="elixir-list__wrapper">
-                <div class="list-header">
-                    <div class="icon">
-                        <PhUsersThree :size="26" weight="light"/>
+            <div class="elixir-list__description">
+                <div class="elixir-list__wrapper">
+                    <div class="list-header">
+                        <div class="icon">
+                            <PhBowlSteam :size="26" weight="light"/>
+                        </div>
+                        <span>Ingredients</span>
                     </div>
-                    <span>Inventors</span>
+        
+                    <ul class="description-list">
+                        <li v-for="ingredient of elixir.ingredients">{{ ingredient.name }}</li>
+                        <li v-if="elixir.ingredients.length === 0">Unknown</li>
+                    </ul>
                 </div>
-    
-                <ul class="description-list">
-                    <li v-for="inventor of elixir.inventors">{{ inventor.firstName }}  {{ inventor.lastName }}</li>
-                    <li v-if="elixir.inventors.length === 0">Unknown</li>
-                </ul>
+                <div class="elixir-list__wrapper">
+                    <div class="list-header">
+                        <div class="icon">
+                            <PhUsersThree :size="26" weight="light"/>
+                        </div>
+                        <span>Inventors</span>
+                    </div>
+        
+                    <ul class="description-list">
+                        <li v-for="inventor of elixir.inventors">{{ inventor.firstName }}  {{ inventor.lastName }}</li>
+                        <li v-if="elixir.inventors.length === 0">Unknown</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </article>
@@ -84,14 +85,14 @@ const descriptionLabelIcons = [
 
 <style lang="scss" scoped>
 .elixir-detail-card {
-    padding: 12px 18px;
-    border-radius: 4px;
-    background-color: hsl(220, 6%, 10%);
-    margin-bottom: 22px;
-
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    padding: 12px 18px;
+    margin-bottom: 22px;
+    background-color: hsl(220, 6%, 10%);
+    border-radius: 4px;
 
     &:last-of-type {
         margin-bottom: 0;
@@ -105,14 +106,28 @@ h3 {
     
     border-radius: 4px;
     padding: 4px 12px;
-    margin-left: -12px;
+    margin-left: -22px;
+    border: 1px solid hsl(var(--color-primary), 0.8);
     background-color: hsl(var(--color-secondary));
 }
 
+.detail-divider {
+    display: flex;
+    gap: 22px;
+
+    @include mobileAndBelow() {
+        flex-direction: column;
+    }
+}
+
 .elixir-detail-list {
+    flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .elixir-description {
@@ -140,11 +155,30 @@ h3 {
             margin-right: 4px;
         }
     }
+
+    @include mobileAndBelow() {
+        .icon {
+            display: none;
+        }
+    }
 }
 
 .elixir-list__description {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
+    flex: 1;
+
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+
+   @include mobileAndBelow() {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .icon {
+            display: none;
+        }
+    }
 }
 
 .elixir-list__wrapper {
@@ -167,6 +201,13 @@ h3 {
 }
 
 .description-list {
+    min-height: 70px;
+    max-height: 150px;
+    overflow-y: auto;
     margin-left: 28px;
+
+    @include mobileAndBelow() {
+        margin-left: 12px;
+    }
 }
 </style>

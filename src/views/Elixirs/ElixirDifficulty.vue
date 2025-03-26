@@ -66,8 +66,9 @@
             <span>Fetching Spells</span>
         </div>
 
-        <div class="elixir-details-list" v-else>
-            <ElixirCard 
+        <div class="elixir-details-list">
+            <ElixirCard                
+                class="elixir-card"
                 v-for="elixir of data" 
                 :key="elixir.id" 
                 :elixir="elixir"
@@ -83,7 +84,7 @@ import { watch } from 'vue';
 import { reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { InputText, useToast } from 'primevue';
-import { motion } from 'motion-v';
+import { motion, AnimatePresence } from 'motion-v';
 import ElixirCard from '@/components/Elixirs/ElixirCard.vue';
 import Ripple from '@/components/Decorative/Ripple.vue';
 import SortingHatIcon from '@/components/Icons/SortingHatIcon.vue';
@@ -163,5 +164,37 @@ watch(isPending, (nextValue) => {
     flex-direction: column;
     align-items: center;
     justify-content: center; 
+}
+
+.elixir-details-list {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+.elixir-card {
+    width: 400px;
+}
+
+
+.list-enter-active {
+    transition: all 0.5s ease;
+}
+
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+
+.list-enter-from {
+    opacity: 0;
+    transform: translateX(-100px);
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

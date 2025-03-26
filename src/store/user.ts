@@ -15,7 +15,7 @@ interface User {
 
 export const useUserStore = defineStore('user', () => {
     const user = reactive<User>({
-        role: 'explorer',
+        role: 'headmaster',
         username: '',
     });
 
