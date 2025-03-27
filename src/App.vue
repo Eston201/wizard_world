@@ -34,17 +34,13 @@ const appStore = useAppStore();
   display: flex;
   flex-direction: column;
 
-  /* overflow: hidden; */
   &.hide-overflow {
     overflow: hidden;
   }
 
   .router__wrapper {
-    /* overflow-y: auto; */
     flex: 1;
     padding-inline: var(--viewport-padding);
-    /* display: flex; */
-    /* flex-direction: column; // So that we can get full height route containers :)  */
   }
 }
 

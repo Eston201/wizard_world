@@ -9,7 +9,7 @@ export function checkAccessPermission(
     _from: RouteLocationNormalizedGeneric,
     role: TRole | undefined
 ) {
-    // No role by checking access, so return false
+    // No role but checking access, so return false
     if (!role) return {hasPermission: false, redirectPathName: ROUTE_NAMES.HOME};
     
     const routesMatchedByName = indexBy((r) => (r.name as string), route.matched);

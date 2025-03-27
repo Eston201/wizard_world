@@ -1,6 +1,6 @@
 import { fetchHouses, fetchHouseWithId } from "@/api/wizard-world/houses";
 import { useQuery } from "@tanstack/vue-query";
-import { toValue, type MaybeRefOrGetter, type Ref } from "vue";
+import { toValue, type MaybeRefOrGetter } from "vue";
 
 export function useHousesQuery() {
     return useQuery({
