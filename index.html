@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wizard World</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
     <style>
       @font-face {
         font-family: "Harry P";
-        src: url('./fonts/HARRYP__.TTF');
+        src: url('/fonts/harryp__-webfont.woff2') format('woff2'),
+             url('/fonts/harryp__-webfont.woff') format('woff'),
+             url('/fonts/HARRYP__.TTF') format('truetype');
+      }
+
+      @font-face {
+        font-family: "Crimson Text";
+        font-display: swap;
+        src: url('/fonts/Crimson_Text_Variable.woff2') format('woff');
       }
     </style>
   </head>

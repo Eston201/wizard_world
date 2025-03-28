@@ -89,6 +89,7 @@ const descriptionLabelIcons = [
     flex-direction: column;
     gap: 16px;
 
+    color: hsl(220, 9%, 94%);
     padding: 12px 18px;
     margin-bottom: 22px;
     background-color: hsl(220, 6%, 10%);
@@ -106,9 +107,9 @@ h3 {
     
     border-radius: 4px;
     padding: 4px 12px;
-    margin-left: -22px;
+    margin-left: -26px;
     border: 1px solid hsl(var(--color-primary), 0.8);
-    background-color: hsl(var(--color-secondary));
+    background-color: hsl(220, 6%, 10%);
 }
 
 .detail-divider {

@@ -1,7 +1,7 @@
 <template>
     <main class="elixirs-view__wrapper">
         <Tabs :value="activeDifficulty" scrollable>
-            <TabList> 
+            <TabList>
                 <Tab
                     v-for="difficulty in ElixirDifficulties" 
                     :key="difficulty" 
@@ -35,7 +35,6 @@
             <span>Select A Difficulty</span>
         </div>
         
-
         <div class="elixir-child-route__wrapper">
             <router-view></router-view>
             <ScrollTop target="parent"/>

@@ -29,7 +29,7 @@ export const fetchHouseWithId = async (id: string): Promise<IHouse> => {
 
     // Add slug and return
     return {
-        ...response.data,
-        slug: slugify(response.data.name)
+        ...response,
+        slug: slugify(response.name)
     };
 };

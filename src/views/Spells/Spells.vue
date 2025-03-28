@@ -279,7 +279,6 @@ function formatSpellType(type: string) {
     padding: 4px;
     border-radius: 6px;
     border: 1px solid hsl(0, 0%, 20%);
-    background-color: hsl(220, 6%, 10%);
     transition: border-color 0.2s ease;
 
     @include mobileAndBelow() {

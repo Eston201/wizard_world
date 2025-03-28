@@ -52,6 +52,7 @@ defineProps({
     flex-direction: column;
     gap: 12px;
     
+    color: hsl(220, 9%, 94%);
     background-color: #131313;
     border-radius: 12px;
     padding: 22px;

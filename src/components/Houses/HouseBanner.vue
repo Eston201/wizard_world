@@ -4,7 +4,7 @@
         :style="bannerStyles"
     >
         <div class="house-img__wrapper">
-            <img :src="`/images/houses/${houseName}.png`" :alt="houseName + 'logo'" />
+            <img :src="`/images/houses/${houseName}.png`" :alt="`${houseName} logo`" />
         </div>
 
         <figcaption class="banner-caption">

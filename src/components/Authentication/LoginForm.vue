@@ -58,10 +58,8 @@
                     :initial="{y: 20, opacity: 0}"
                     :animate="{y: 0, opacity: 1}"
                     :transition="{type: 'spring', duration: 1, delay: 0.3}"
-                    class="submit-btn" 
                     type="submit" 
-                    severity="secondary" 
-                    label="Login" 
+                    label="Login"
                 />
             </Form>
         </template>
@@ -70,13 +68,19 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { InputText, Message, Button, FloatLabel, Password } from 'primevue';
+import { 
+    InputText, 
+    Message, 
+    Button, 
+    FloatLabel, 
+    Password 
+} from 'primevue';
 import { Form } from '@primevue/forms';
+import { motion } from 'motion-v';
 import BaseForm from '@/components/BaseForm.vue';
 import SortingHatIcon from '@/components/Icons/SortingHatIcon.vue';
 import DecorativeTitle from '@/components/Decorative/DecorativeTitle.vue';
 import Ripple from '@/components/Decorative/Ripple.vue';
-import { motion } from 'motion-v';
 
 // Super charged Motion Components
 const MotionSortingHatIcon = motion.create(SortingHatIcon);
@@ -141,9 +145,5 @@ const onFormSubmit = ({ valid }: {valid: boolean}) => {
     display: flex;
     flex-direction: column;
     gap: 4px;
-}
-
-.submit-btn {
-    color: var(--p-primary-color);
 }
 </style>

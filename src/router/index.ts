@@ -1,8 +1,5 @@
 import { useAuthStore } from "@/store/auth";
-import { 
-    createRouter, 
-    createWebHistory,
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import { ROUTE_NAMES } from "./types";
 import { routes } from "./routes";
 import { checkAccessPermission } from "./accessControl";

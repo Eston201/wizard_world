@@ -10,7 +10,7 @@
                     v-for="x of 3"
                     :key="`broom-bar-${x}`"
                 >
-                    <WizardBroomIcon :size="iconSize"/>
+                    <WizardBroomIcon :size="18"/>
                 </div>
                 <VisuallyHidden>Open Menu</VisuallyHidden>
             </div>
@@ -29,8 +29,6 @@ defineProps({
         default: false
     }
 });
-
-const iconSize = 18;
 </script>
 
 <style lang="scss" scoped>

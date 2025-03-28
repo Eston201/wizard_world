@@ -80,18 +80,25 @@ const isMobileVisible = ref(false);
     padding-inline: var(--viewport-padding);
     --top-buffer: 1.5rem;
     margin-top: var(--top-buffer);
+    
+    --header-overlay-bg-color: hsl(0, 0%, 5%, 0.75);
 
     &::before {
         height: calc(100% + var(--top-buffer)); // increase by buffer
+
         content: "";
         position: absolute;
         inset: 0;
         top: calc(var(--top-buffer) * -1); // Shift back up by buffer
         z-index: -1;
 
-        background-color: hsl(0, 0%, 5%, 0.75);
+        background-color: var(--header-overlay-bg-color);
         border-bottom: 1px solid hsl(var(--color-primary), 0.2);
         backdrop-filter: blur(3px);
+    }
+
+    @media (prefers-color-scheme: light) {
+        --header-overlay-bg-color: hsla(0, 0%, 100%, 0.95);
     }
 }
 
@@ -108,8 +115,7 @@ header {
 .home-link {
     font-family: var(--harry-p);
     font-size: 2.25rem;
-    /* color: hsl(var(--color-primary)); */
-
+    
     @include mobileAndBelow() {
         font-size: 1.75rem;
     }

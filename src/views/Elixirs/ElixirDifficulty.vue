@@ -28,11 +28,11 @@
             <div class="elixir-filter-group">
                 <label for="elixir_inventor">Inventor</label>
                 <InputText 
-                    id="elixir_incantation" 
-                    name="elixirIncantation"
+                    id="elixir_inventor" 
+                    name="elixirInventor"
                     type="text" 
-                    v-model="elixirSearchParams.inventor"
-                    placeholder="E.G Avada Kedavra"
+                    v-model="elixirSearchParams.InventorFullName"
+                    placeholder="E.G Glover Hipworth"
                     fluid
                 />
             </div>
@@ -44,7 +44,7 @@
                     name="elixirManufacturer"
                     type="text" 
                     v-model="elixirSearchParams.manufacturer"
-                    placeholder="E.G Avada Kedavra"
+                    placeholder="E.G Rubens Winikus"
                     fluid
                 />
             </div>
@@ -84,7 +84,7 @@ import { watch } from 'vue';
 import { reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { InputText, useToast } from 'primevue';
-import { motion, AnimatePresence } from 'motion-v';
+import { motion } from 'motion-v';
 import ElixirCard from '@/components/Elixirs/ElixirCard.vue';
 import Ripple from '@/components/Decorative/Ripple.vue';
 import SortingHatIcon from '@/components/Icons/SortingHatIcon.vue';
@@ -98,7 +98,7 @@ const elixirSearchParams = reactive<IElixirSearchParams>({
     name: '',
     difficulty: '',
     ingredient: '',
-    inventor: '',
+    InventorFullName: '',
     manufacturer: ''
 });
 
@@ -176,25 +176,5 @@ watch(isPending, (nextValue) => {
 
 .elixir-card {
     width: 400px;
-}
-
-
-.list-enter-active {
-    transition: all 0.5s ease;
-}
-
-.list-leave-active {
-  transition: all 0.5s ease;
-}
-
-
-.list-enter-from {
-    opacity: 0;
-    transform: translateX(-100px);
-}
-
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
 }
 </style>

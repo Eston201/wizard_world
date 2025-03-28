@@ -1,6 +1,9 @@
 /**
  * Util Functions
 */
+
+// Build error message based on the error object that's
+// brought back by the wizard world api
 export function buildErrorMessage(errorListObject: Record<string, string[]>) {
     return Object.keys(errorListObject)
                  .map((k) => `Invalid argument provided for ${k}`)
@@ -79,7 +82,7 @@ export type IElixirSearchParams = {
     name: string;
     difficulty: string;
     ingredient: string;
-    inventor: string;
+    InventorFullName: string;
     manufacturer: string;
 }
 

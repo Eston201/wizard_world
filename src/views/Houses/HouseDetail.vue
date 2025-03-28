@@ -255,7 +255,6 @@ h2 {
         padding: 4px;
         border-radius: 6px;
         border: 1px solid hsl(0, 0%, 20%);
-        background-color: hsl(220, 6%, 10%);
     }
 }
 

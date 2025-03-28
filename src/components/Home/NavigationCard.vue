@@ -47,7 +47,7 @@ defineProps({
     left: 50%;
     transform: translateX(-50%);
 
-    color: inherit;
+    color: hsl(220, 9%, 94%);
     text-decoration: none;
     font-size: 2.5rem;
     font-family: var(--harry-p);

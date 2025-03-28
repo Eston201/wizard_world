@@ -43,6 +43,6 @@ describe('Auth Store', () => {
     const result = authStore.login(EXPLORER_AUTH, "Invalid password");
     expect(result).toBe(false);
     expect(authStore.isAuthenticated).toEqual(false);
-    expect(userStore.user).toEqual({role: '', username: ''});
+    expect(userStore.user).toEqual({role: undefined, username: ''});
   });
 });

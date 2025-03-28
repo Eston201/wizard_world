@@ -1,15 +1,15 @@
 @use "./reset.scss";
 @use "./partials/house-colors.scss";
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@use "./partials/dark-theme-colors";
+@use "./partials/light-theme-colors";
 
+// App wide variables
 :root {
+  // Colors
+  --color-primary: 41, 70%, 55%;
   // Font
   --harry-p: "Harry P";
   --crimson-text: "Crimson Text";
-  // Colors
-  --color-primary: 41, 70%, 55%; // #ddaa3c
-  --color-secondary: 220, 43%, 3%; // #04070b
-  --text-color: 220, 9%, 94%;
   // Spacing
   --viewport-padding: 32px;
 }
@@ -20,8 +20,7 @@ html, body, #app {
 }
 
 body {
-  background-color: hsl(var(--color-secondary));
+  background-color: hsl(var(--bg-color));
   color: hsl(var(--text-color));
-
   font-family: "Crimson Text", sans-serif;
 }

@@ -31,7 +31,7 @@ describe('LoginForm', () => {
         expect(wrapper.find('#login-password').exists()).toBe(true);
         expect(wrapper.find('label[for="login-password"]').exists()).toBe(true);
         // button
-        expect(wrapper.find('.submit-btn').text()).toBe('Login');
+        expect(wrapper.find('button').text()).toBe('Login');
     });
 
     it('will submit the form with correct username and password ', async () => {

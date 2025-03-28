@@ -44,7 +44,7 @@ const MyPreset = definePreset(Aura, {
             900: '{amber.900}',
             950: '{amber.950}'
         }
-    }
+    },
 });
 
 const pinia = createPinia();

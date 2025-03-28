@@ -1,5 +1,6 @@
 import { vi } from 'vitest'
 
+// Stub for motion vue
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
   observe: vi.fn(),
@@ -9,6 +10,7 @@ const IntersectionObserverMock = vi.fn(() => ({
 
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 
+// Sub for primeVue
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query) => ({
