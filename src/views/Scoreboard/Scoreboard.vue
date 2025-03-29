@@ -1,39 +1,43 @@
 <template>
     <main class="scoreboard-view__wrapper">
-        <DataTable :value="houseScoreboard" tableStyle="min-width: 40rem">
-            <Column field="name" header="Name">
-                <template #body="slotProps">
-                    <div class="house-logo-name__wrapper">
-                        <img 
-                            :src="`/images/houses/${slotProps.data.name}.png`" 
-                            :alt="slotProps.data.name"
-                            class="house-logo"
-                        />
-                        <span>{{ slotProps.data.name }}</span>
-                    </div>
-                </template>
-            </Column>
-            <Column field="score" header="Score"></Column>
-            <Column header="Operations" v-if="userStore.isHeadMaster">
-                <template #body="slotProps">
-                    <div class="score-operations-btn__wrapper">
-                        <Button @click="() => updateHouseScore(slotProps.data, 'decrement')">
-                            <span>-</span>
-                            <VisuallyHidden>
-                                Decrement Score by 1
-                            </VisuallyHidden>
-                        </Button>
+        <Loader :isLoading="isPending"/>
 
-                        <Button @click="() => updateHouseScore(slotProps.data, 'increment')">
-                            <span>+</span>
-                            <VisuallyHidden>
-                                Increment Score by 1
-                            </VisuallyHidden>
-                        </Button>
-                    </div>
-                </template>
-            </Column>
-        </DataTable>
+        <div class="score-table__wrapper">
+            <DataTable :value="houseScoreboard" tableStyle="min-width: 40rem">
+                <Column field="name" header="Name">
+                    <template #body="slotProps">
+                        <div class="house-logo-name__wrapper">
+                            <img 
+                                :src="`/images/houses/${slotProps.data.name}.png`" 
+                                :alt="slotProps.data.name"
+                                class="house-logo"
+                            />
+                            <span>{{ slotProps.data.name }}</span>
+                        </div>
+                    </template>
+                </Column>
+                <Column field="score" header="Score"></Column>
+                <Column header="Operations" v-if="userStore.isHeadMaster">
+                    <template #body="slotProps">
+                        <div class="score-operations-btn__wrapper">
+                            <Button @click="() => updateHouseScore(slotProps.data, 'decrement')">
+                                <span>-</span>
+                                <VisuallyHidden>
+                                    Decrement Score by 1
+                                </VisuallyHidden>
+                            </Button>
+    
+                            <Button @click="() => updateHouseScore(slotProps.data, 'increment')">
+                                <span>+</span>
+                                <VisuallyHidden>
+                                    Increment Score by 1
+                                </VisuallyHidden>
+                            </Button>
+                        </div>
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
     </main>
 </template>
 
@@ -44,7 +48,8 @@ import { computed, watch } from 'vue';
 import { DataTable, Column, Button, useToast } from 'primevue';
 import VisuallyHidden from '@/components/VisuallyHidden.vue';
 import { useOverFlowToggle } from '@/composables/useOverFlowToggle';
-import { ROLE, useUserStore } from '@/store/user';
+import { useUserStore } from '@/store/user';
+import Loader from '@/components/Loader.vue';
 
 useOverFlowToggle();
 const toast = useToast();
