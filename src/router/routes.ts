@@ -9,6 +9,7 @@ const HouseDetail = () => import('@/views/Houses/HouseDetail.vue');
 const Spells = () => import('@/views/Spells/Spells.vue');
 const Elixirs = () => import('@/views/Elixirs/Elixirs.vue');
 const ElixirDifficulty = () => import('@/views/Elixirs/ElixirDifficulty.vue');
+const Scoreboard = () => import('@/views/Scoreboard/Scoreboard.vue');
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -70,5 +71,13 @@ export const routes: RouteRecordRaw[] = [
                 }
             }
         ]
+    },
+    {
+        path: '/scoreboard',
+        name: ROUTE_NAMES.SCOREBOARD,
+        component: Scoreboard,
+        meta: {
+            requiresAuth: true
+        }
     }
 ];

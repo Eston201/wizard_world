@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { computed, reactive } from "vue";
 
 export const ROLE = {
     HEADMASTER: 'headmaster',
@@ -29,9 +29,14 @@ export const useUserStore = defineStore('user', () => {
         user.username = '';
     }
 
+    const isHeadMaster = computed(() => {
+        return user.role === ROLE.HEADMASTER;
+    });
+
     return {
         user,
         setUser,
-        clearUser
+        clearUser,
+        isHeadMaster,
     }
 });

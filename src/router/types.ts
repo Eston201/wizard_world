@@ -6,4 +6,5 @@ export const ROUTE_NAMES = {
     SPELLS: 'spells',
     ELIXIRS: 'elixirs',
     ELIXIR_DIFFICULTY: 'elixir_difficulty',
+    SCOREBOARD: 'scoreboard'
 } as const;

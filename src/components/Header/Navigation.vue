@@ -25,6 +25,10 @@ const routes = [
         label: 'Elixirs',
         routeName: ROUTE_NAMES.ELIXIRS,
     },
+    {
+        label: 'Scoreboard',
+        routeName: ROUTE_NAMES.SCOREBOARD,
+    },
 ];
 </script>
 

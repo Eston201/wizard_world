@@ -51,7 +51,7 @@
 import Carousel from 'primevue/carousel';
 import HouseBanner from '@/components/Houses/HouseBanner.vue';
 import Loader from '@/components/Loader.vue';
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { onBeforeUnmount, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import { useHousesQuery } from '@/composables/wizard-world/useHouses';

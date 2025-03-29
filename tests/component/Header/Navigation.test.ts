@@ -14,7 +14,7 @@ describe('Navigation', () => {
         });
         // There are currently only three routes in navigation
         const anchors = wrapper.findAll('a');
-        expect(anchors.length).toBe(3);
+        expect(anchors.length).toBe(4);
         anchors.forEach((anchor) => {
             expect(anchor.text()).toBe("Test");
         });
@@ -35,7 +35,7 @@ describe('Navigation', () => {
         });
         const routeLabels = wrapper.findAll('.test-route-label').map((l) => l.text());
         const routeNames = wrapper.findAll('.test-route-name').map((l) => l.text());
-        expect(routeLabels).toEqual(['Houses', 'Spells', 'Elixirs']);
-        expect(routeNames).toEqual([ROUTE_NAMES.HOUSES, ROUTE_NAMES.SPELLS, ROUTE_NAMES.ELIXIRS]);
+        expect(routeLabels).toEqual(['Houses', 'Spells', 'Elixirs', 'Scoreboard']);
+        expect(routeNames).toEqual([ROUTE_NAMES.HOUSES, ROUTE_NAMES.SPELLS, ROUTE_NAMES.ELIXIRS, ROUTE_NAMES.SCOREBOARD]);
     });
 });

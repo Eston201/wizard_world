@@ -51,7 +51,7 @@ describe('Header', () => {
             await router.push({name: ROUTE_NAMES.HOUSES});
             await router.isReady();
             expect(wrapper.find('nav').exists()).toBe(true);
-            expect(wrapper.findAll('.nav-link').length).toBe(3) // houses, spells, elixirs
+            expect(wrapper.findAll('.nav-link').length).toBe(4) // houses, spells...
         });
     
         it('routes to home via site anchor', async () => {
@@ -68,7 +68,7 @@ describe('Header', () => {
             const mobileNav = wrapper.getComponent(MobileNavigation);
             expect(mobileNav.vm.$props.isVisible).toBe(true);
             const navigations = wrapper.getComponent(Navigation);
-            expect(navigations.findAll('a').length).toBe(3);
+            expect(navigations.findAll('a').length).toBe(4);
         });
 
         it('can change route and auto close mobile nav', async () => {
